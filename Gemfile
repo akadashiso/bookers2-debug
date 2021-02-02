@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Reduces boot times through caching; required in config/boot.rb
+# Reduces  times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
@@ -67,3 +67,5 @@ gem "refile-mini_magick"
 
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
+
+gem 'bootstrap', '~> 4.5'
