@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:update, :edit]
+  before_action :ensure_correct_user, only: [:update, :edi]
 
   def show
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @book_id = Book.find(params[:id])
+    @book_comment = BookComment.new
+
   end
 
   def index
