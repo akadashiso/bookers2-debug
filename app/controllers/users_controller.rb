@@ -5,8 +5,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
-    @book_id = Book.find(params[:id])
+    # @book_id = Book.find(params[:id])
     @book_comment = BookComment.new
+    @relationship = @user.relationships.find_by(follow_id: @user.id)
+    @set_relationship = @user.relationships.new
 
   end
 
@@ -14,6 +16,8 @@ class UsersController < ApplicationController
     @user = current_user
     @book = Book.new
     @users = User.all
+    @relationship = @user.relationships.find_by(follow_id: @user.id)
+    @set_relationship = @user.relationships.new
   end
 
   def edit
@@ -26,6 +30,16 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.followings.all
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.all
   end
 
   private
