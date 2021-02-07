@@ -19,7 +19,7 @@ class User < ApplicationRecord
                                    foreign_key: "follow_id",
                                    dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :user
-  
+
 # フォローボタン表示の
   def following?(other_user)
     self.followings.include?(other_user)
@@ -35,4 +35,20 @@ class User < ApplicationRecord
     relationship = self.relationships.find_by(follow_id: other_user.id)
     relationship.destroy if relationship
   end
+
+  def self.search(search,word)
+    if search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "perfect_match"
+      @user = User.where(name: word)
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+    @user = User.all
+    end
+  end
+
+
 end
