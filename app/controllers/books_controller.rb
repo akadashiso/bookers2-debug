@@ -5,6 +5,7 @@ class BooksController < ApplicationController
     @book2 = Book.new
     @user = current_user
     @book_comment = BookComment.new
+    @book_comments = @book.book_comments.order(created_at: :desc)
 
   end
 
